@@ -4,13 +4,10 @@
 using namespace std;
 
 void primeSieve(int* plist, int n){
-    for(int i= 3; i< n; i++){
+    for(int i= 3; i< n; i+=2){
             plist[i]= 1; 
     }
-    for(int i= 3; i<n; i++){
-        if(i%2== 0)
-            plist[i]= 0;
-    }
+
     for(long i= 3; i< n; i+= 2){
         if(plist[i]== 1){
             for(long j= i* i; j< n; j= j+ i)
