@@ -36,8 +36,14 @@ void magical_park(char a[R][C], int strength, int thresh_strength){
 
 }
 
-
 int main(){
+
+    //In this problem we assume a matrix as a park full of hurdles
+    //* means current strength is added by 5
+    //. means current strength is reduced by  2
+    //# means jump to next row.
+    // The current strength needs to be greater than the thresh strength for it to traverse completely
+    // strength is reduced by one at every move except hopping on to the next row
     cout<<"Park Dimensions are"<<R<<"x"<<C<<endl;
     int thresh_strength, curr_strength;
     cout<<"Enter threshold strength"<<endl;
