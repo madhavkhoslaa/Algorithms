@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 #define R 5 
 #define C 5
 using namespace std;
@@ -31,6 +32,9 @@ void rotate_img(int a[R][C]){
 }
 
 int main(){
+    // A way to rotae a matrix in O(1) space is to
+    //1. Reverse the rows of the matrix
+    //Transpose the elements of the matrix except the indexes where i== j
     int a[R][C]= {{1,2,3,4,5}, {0,9,8,7,6}, {1,2,3,4,5}, {0,9,8,7,6}, {1,2,3,4,5}};
     cout<<"For a"<<R<<"x"<<C<<" image"<<endl;
     cout<<"Before Rotation"<<endl;
