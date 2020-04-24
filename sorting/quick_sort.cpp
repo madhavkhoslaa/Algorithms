@@ -27,7 +27,7 @@ void quicksort(int* a, int start, int end){
 }
 int main(){
     int n;
-    cout<<"Enter Length of array";
+    cout<<"Enter Length of array "<<endl;
     cin>>n;
     int a[n];
     cout<<"Enter the elements of the array"<<endl;
