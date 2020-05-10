@@ -16,8 +16,14 @@ int bubble(int* a, int n){
     }
 }
 int main(){
-    int a[]= {1,3,2,5,4};
-    bubble(a, 5);
+    int size;
+    cout<<"Enter array size: "<<endl;
+    cin>>size;
+    int a[size];
+    for(int i= 0; i< size; i++){
+        cin>>a[i];
+    }
+    bubble(a, sizeof(a)/sizeof(int));
     for(int i= 0; i< 5; i++){
         cout<<a[i]<<",";
     }
