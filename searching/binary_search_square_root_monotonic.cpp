@@ -2,10 +2,10 @@
 
 using namespace std;
 
-int square(int n){
+float square(int n){
 	int start= 0;
 	int end= n;
-	int ans= -1;
+	float ans= -1;
 	while(start<= end){
 		int mid= (start+ end)/2;
 		cout<<"start is "<<start<<endl;
@@ -16,11 +16,16 @@ int square(int n){
 		if(mid* mid< n){
 			ans= mid;
 			start= mid+ 1;
-			cout<<"mid square < n"<<" ans= "<<mid<<"start is "<<start<<endl;
 		}
 		else{
 			end= mid- 1;
 			cout<<"mid square > n value of end is "<<end<<endl;
+		}
+	}
+	float inc= 0.01;
+	for(float i= ans; i<ans+ 1; i=i+ inc ){
+		if(i*i<= n){
+			ans= i;
 		}
 	}
 	return ans;
@@ -30,7 +35,7 @@ int main(){
 	int n;
 	cout<<"Enter the number: ";
 	cin>>n;
-	int square_root= square(n);
+	float square_root= square(n);
 	cout<<"______________________________"<<endl;
 	cout<<"Square root of "<<n<<" is "<<square_root;
 	return 1;
