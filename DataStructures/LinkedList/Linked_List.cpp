@@ -10,28 +10,18 @@ class node{
 
     }
 };
-
+int length(node* &head){
+    int len= 0;
+    while(head!=nullptr){
+        head= head->next;
+        len++;
+    }
+    return len;
+}
 void insertHead(node* &head, int data){
     node* n= new node(data);
     n->next= head;
     head= n;
-}
-void insertinmid(int data, int position, node* &head){
-    if(head==nullptr||position== 0){
-        insertHead(head, data);
-    }
-    else if(position> length(head)){
-        insertTail(head, data)
-    }
-    int i= 1;
-    node* temp= head;
-    while(i< position- 1){
-        temp= temp->next;
-        i++;
-    }
-    node* n= new node(data);
-    n->next= temp->next;
-    temp->next= n;
 }
 void insertTail(node* &head, int data){
     node* temp= head;
@@ -42,20 +32,34 @@ void insertTail(node* &head, int data){
     temp->next= n;
     n->next= nullptr;
 }
+void insertinmid(int data, int position, node* &head){
+    node* temp= head;
+        if(head==nullptr||position== 0){
+        insertHead(head, data);
+    }
+    else if(position> length(temp)){
+        insertTail(head, data);
+    }
+    else{
+        int i= 0;
+        node* temp= head;
+        while(i<= position){
+            temp= temp->next;
+            i++;
+        }
+        node* n= new node(data);
+        n->next= temp->next;
+        temp->next= n;
+    }
+}
+
 void print(node* head){
     while(head!= nullptr){
         cout<<head->data<<endl;
         head= head->next;
     }
 }
-int length(node* &head){
-    int len= 0;
-    while(head!=nullptr){
-        head= head->next;
-        len++;
-    }
-    return len;
-}
+
 int main(){
     node* head= nullptr;
     insertHead(head, 10);
@@ -66,8 +70,8 @@ int main(){
     insertHead(head, 20);
     insertTail(head, 69);
     insertHead(head, 41);
-        insertinmid(1227, 2, head);
+    insertinmid(1337, 4, head);
     print(head);
-    cout<<length(head);
+    cout<<"length: "<<length(head);
     return 0;
 }
