@@ -10,7 +10,7 @@ class node{
 
     }
 };
-int length(node* &head){
+int length(node* head){
     int len= 0;
     while(head!=nullptr){
         head= head->next;
@@ -41,9 +41,9 @@ void insertinmid(int data, int position, node* &head){
         insertTail(head, data);
     }
     else{
-        int i= 0;
+        int i= 1;
         node* temp= head;
-        while(i<= position){
+        while(i<= position-1){
             temp= temp->next;
             i++;
         }
@@ -59,19 +59,89 @@ void print(node* head){
         head= head->next;
     }
 }
+void deletehead(node* &head){
+    if(head==nullptr){
+        return;
+    }
+    node* temp= head;
+    head= head->next;
+    delete temp;
+}
+void deletetail(node* &head){
+    node* prev;
+    node* temp= head;
+    while(temp->next!=nullptr){
+        prev= temp;
+        temp= temp->next;
+    }
+    delete temp;
+    prev->next= nullptr;
+}
+void deletemid(node* &head, int position){
+    node* temp= head;
+    if(position>= length(temp)){
+        deletetail(head);
+    }
+    else if(position== 0){
+        deletehead(head);
+    }
+    else if(head==nullptr){
+        return;
+    }
+    else{
+        int i= 0;
+        node* temp= head;
+        node* prev= nullptr;
+        while(i< position){
+            prev= temp;
+            temp=temp->next;
+            i++;
+        }
+        prev->next= temp->next;
+        delete temp;
 
+    }
+}
+
+int recursivesearch(node* &head, int data,int position= 0){
+    node* temp= head;
+    if(temp->data== data){
+        return position;
+    }
+    else if(head==nullptr){
+        return -1;
+    }
+    else if(temp->next!= nullptr){
+        position+=1;
+        return recursivesearch(temp->next, data, position);
+    }
+    return -1;
+}
+
+int itersearch(node* &head, int data){
+    node* temp= head;
+    int position= 0;
+    while(temp!=nullptr){
+        if(temp->data== data){
+            return position;
+        }
+        temp=temp->next;
+        position++;
+    }
+    return -1;
+}
 int main(){
     node* head= nullptr;
-    insertHead(head, 10);
-    insertHead(head, 20);
-    insertHead(head, 20);
-    insertHead(head, 10);
-    insertHead(head, 20);
-    insertHead(head, 20);
-    insertTail(head, 69);
-    insertHead(head, 41);
-    insertinmid(1337, 4, head);
+    insertHead(head, 1);
+    insertHead(head, 2);
+    insertHead(head, 3);
+    insertHead(head, 4);
+    insertHead(head, 5);
+    insertHead(head, 6);
     print(head);
-    cout<<"length: "<<length(head);
+    cout<<"enter digit to search"<<endl;
+    int tosearch;
+    cin>>tosearch;
+    cout<<"Through iter search found at:"<<itersearch(head, tosearch)<<endl;
     return 0;
 }
