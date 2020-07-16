@@ -24,6 +24,9 @@ void insertHead(node* &head, int data){
     head= n;
 }
 void insertTail(node* &head, int data){
+    if(head==nullptr){
+        insertHead(head, data);
+    }
     node* temp= head;
     while(temp->next!=nullptr){
         temp= temp->next;
@@ -130,18 +133,18 @@ int itersearch(node* &head, int data){
     }
     return -1;
 }
+void input(node* &head){
+    int data;
+    cin>>data;
+    while(data!=-1){
+        insertTail(head, data);
+        cin>>data;
+    }
+}
 int main(){
     node* head= nullptr;
-    insertHead(head, 1);
-    insertHead(head, 2);
-    insertHead(head, 3);
-    insertHead(head, 4);
-    insertHead(head, 5);
-    insertHead(head, 6);
+    input(head);
     print(head);
-    cout<<"enter digit to search"<<endl;
-    int tosearch;
-    cin>>tosearch;
-    cout<<"Through iter search found at:"<<itersearch(head, tosearch)<<endl;
+
     return 0;
 }
