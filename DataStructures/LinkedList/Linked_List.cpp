@@ -58,9 +58,10 @@ void insertinmid(int data, int position, node* &head){
 
 void print(node* head){
     while(head!= nullptr){
-        cout<<head->data<<endl;
+        cout<<head->data<<"->";
         head= head->next;
     }
+    cout<<endl;
 }
 void deletehead(node* &head){
     if(head==nullptr){
@@ -137,14 +138,63 @@ void input(node* &head){
     int data;
     cin>>data;
     while(data!=-1){
+
+        cout<<data;
         insertTail(head, data);
         cin>>data;
     }
 }
+void reverse(node* &head){
+    node* prev= nullptr;
+    node* next;
+    node* current= head;
+    while(current!=nullptr){
+        //Storing the next data of the head in next node
+        next= current->next;
+        //pointing the current node to previous node
+        current->next= prev;
+        //updating the previous pointer
+        prev= current;
+        //updating the current pointer
+        current= next;
+    }
+    //pointing the head to the previous pointer
+    head= prev;
+}
+void recursive(node* &head, node* previous, node* next, node* current){
+
+}
+node* midpoint(node* &head){
+    node* fast= head->next;
+    node* slow= head;
+    while(fast!=nullptr && fast->next!=nullptr){
+        fast= fast->next->next;
+        slow= slow->next;
+    }
+    return slow;
+}
+node* kthnodefromend(node* head, int k){
+    node* fast= head;
+    node* slow= head;
+    for(int i= 0; i<= k; i++){
+        fast=fast->next;
+    }
+    while(fast!= nullptr){
+        fast= fast->next;
+        slow= slow-> next;
+    }
+    return slow;
+    cout<<slow->data;
+}
 int main(){
     node* head= nullptr;
     input(head);
-    print(head);
-
+    cout<<"______________________-----------____________________"<<endl;
+    node* temp= head;
+    while(temp->next!=nullptr){
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<endl;
     return 0;
 }
