@@ -1,15 +1,18 @@
 #include<iostream>
+
 using namespace std;
+
 class node{
     public:
-    int data;
-    node* next;
-    node(int data_){
-        data= data_;
-        next= nullptr;
+        int data;
+        node* next;
+        node(int data_){
+            data= data_;
+            next= NULL;
 
-    }
+        }
 };
+
 int length(node* head){
     int len= 0;
     while(head!=nullptr){
@@ -18,11 +21,13 @@ int length(node* head){
     }
     return len;
 }
+
 void insertHead(node* &head, int data){
     node* n= new node(data);
     n->next= head;
     head= n;
 }
+
 void insertTail(node* &head, int data){
     if(head==nullptr){
         insertHead(head, data);
@@ -35,9 +40,10 @@ void insertTail(node* &head, int data){
     temp->next= n;
     n->next= nullptr;
 }
+
 void insertinmid(int data, int position, node* &head){
     node* temp= head;
-        if(head==nullptr||position== 0){
+    if(head==nullptr||position== 0){
         insertHead(head, data);
     }
     else if(position> length(temp)){
@@ -46,7 +52,7 @@ void insertinmid(int data, int position, node* &head){
     else{
         int i= 1;
         node* temp= head;
-        while(i<= position-1){
+        while(i<position){
             temp= temp->next;
             i++;
         }
@@ -94,10 +100,10 @@ void deletemid(node* &head, int position){
     }
     else{
         int i= 0;
-        node* temp= head;
-        node* prev= nullptr;
+        node* temp= head->next;
+        node* prev= head;
         while(i< position){
-            prev= temp;
+            prev= prev->next;
             temp=temp->next;
             i++;
         }
@@ -138,7 +144,6 @@ void input(node* &head){
     int data;
     cin>>data;
     while(data!=-1){
-
         cout<<data;
         insertTail(head, data);
         cin>>data;
